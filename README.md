@@ -1,74 +1,66 @@
-🎬 Telegram Kino Bot
+### FILE: README.md
+# 🎬 Telegram Kino Bot
 
-Telegram orqali foydalanuvchi yuborgan kod asosida kinoni qaytaruvchi bot.
 
-📌 Maqsad
+Oddiy Telegram-bot: foydalanuvchi yuborgan **kod** asosida kinoni yuboradi (fayl yoki link).
 
-Foydalanuvchi botga kino kodini yuboradi (masalan, 2).
 
-Bot shu kodga mos keladigan kino faylini yoki linkini yuboradi.
-
-⚙️ Texnologiyalar
-
-Python 3.10+
-
-aiogram (Telegram bot uchun kutubxona)
-
-SQLite / JSON (ma’lumotlarni vaqtincha saqlash uchun)
-
-🚀 O‘rnatish va ishga tushirish
-
-Loyihani yuklab oling:
-
+## Tez boshlash
+1. Klonlang:
+```bash
 git clone https://github.com/username/kino-bot.git
 cd kino-bot
-
-
-Virtual muhit yarating va faollashtiring:
-
+```
+2. Virtual muhit va kutubxonalarni o'rnating:
+```bash
 python3 -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
-
-
-Kerakli kutubxonalarni o‘rnating:
-
+source venv/bin/activate
 pip install -r requirements.txt
-
-
-.env fayl yarating va BotFather dan olingan tokenni yozing:
-
-BOT_TOKEN=your_telegram_bot_token
-
-
-Botni ishga tushiring:
-
+```
+3. `.env` faylni yarating va BotFather tokenni joylang (`BOT_TOKEN`):
+```env
+BOT_TOKEN=123456:ABC-DEF
+```
+4. Test uchun `data.json` ichidagi mapping va sample fayllarni tekshiring.
+5. Botni ishga tushiring:
+```bash
 python main.py
+```
 
-📂 Loyihaning tuzilishi
-kino-bot/
-│── main.py            # Botning asosiy fayli
-│── data.json          # Kod ↔ Kino ma’lumotlari
-│── requirements.txt   # Kutubxonalar ro‘yxati
-│── README.md          # Loyihaning hujjati
-│── .env               # Maxfiy tokenlar
 
-🗂 Ma’lumotlar bazasi
+## Tuzilishi
+- `main.py` — botning asosiy kodi
+- `data.json` — kod -> kino (fayl yoki link) mapping
+- `requirements.txt` — kerakli kutubxonalar
+- `.env.example` — atrof-muhit namunasi
 
-Oddiy test uchun data.json fayl ishlatiladi:
 
-{
-  "1": "kino1.mp4",
-  "2": "kino2.mp4",
-  "3": "kino3.mp4"
-}
+## Ishlash mantig'i
+- Foydalanuvchi 1 ta so'z yuboradi (odatda raqam yoki kod).
+- Agar kod `data.json` dan topilsa, qiymat kino fayli (local path) yoki URL bo'lishi mumkin.
+- Agar qiymat `http` bilan boshlasa, bot link yuboradi; aks holda fayl yuboradi (agar mavjud bo'lsa).
 
-🔮 Keyingi rejalar
 
-Kino haqida qisqa ma’lumot qaytarish.
+## Eslatma
+- Hozircha test uchun local fayl yoki URL ishlatish qulay. Serverga deploy qilinganda fayllarni serverga joylash yoki CDN ishlatish tavsiya etiladi.
+"""
 
-Kod emas, balki kino nomi bo‘yicha ham qidirish.
 
-Admin panel orqali kinolarni qo‘shish/o‘chirish.
+"""
+### FILE: requirements.txt
+python-telegram-bot==20.5
+python-dotenv==1.0.0
+# agar faylni streaming yuborishni xohlasangiz:
+# aiofiles==23.1.0
+"""
 
-Serverga joylash (Render / PythonAnywhere).
+
+"""
+### FILE: .env.example
+# .env faylni .env deb nomlab ichiga quyidagilarni yozing:
+BOT_TOKEN=your_telegram_bot_token_here
+# Bu loyihada boshqa maxfiy sozlamalar yo'q. Agar kerak bo'lsa, KEY=VALUE tarzida qo'shing.
+"""
+
+
+### FILE: main.py
